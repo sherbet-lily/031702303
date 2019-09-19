@@ -24,7 +24,8 @@ public class Main {
 	            File writename = new File(args[1]);
 	            writename.createNewFile();
 	            BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-	            String line = "";
+	            List<Map<String,Object>> table=new ArrayList<Map<String,Object>>();
+				String line = "";
 	            line = br.readLine();
 	            while (line != null) {
 	                int function=0;
@@ -58,13 +59,12 @@ public class Main {
 	        		 line = line.replaceAll(person.telephone,""); //trimtelephone
 	        		 if(function == 1) person.addressResolution1(line);
 	        		 else person.addressResolution2(line);
-	        		List<Map<String,Object>> table=new ArrayList<Map<String,Object>>();
+	        			
 	        		table.add(person.show());
-	        		JSONArray json = new JSONArray(table);
-	        		line = json.toString();
-	        	     out.write(line);
 	        	     line = br.readLine();
 	            }
+				JSONArray json = new JSONArray(table);
+				out.write(json.toString());
 	            out.flush();
 
 	            out.close();
@@ -74,3 +74,4 @@ public class Main {
 	        }
 	}
 }
+
